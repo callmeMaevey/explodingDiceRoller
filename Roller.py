@@ -10,19 +10,25 @@ def AddDice (quant: int, numOfSides: int) -> int:
     return accum
 
 def getStats(rolls: list):
-    
     nums: list = rolls.copy()
     nums.sort()
-    def get( stat: str ) -> str:
-        pass
+    def get( stat: str ):
+        match stat:
+            case "min":  return "minimum: " + str(nums[0]) 
+            case "max":  return "maximum: " + str(nums[len(nums) - 1])
+            case "mean": return "mean: "    + str(statistics.mean(nums))
+            case "med":  return "median: "  + str(statistics.median(nums))
+            case "mode": return "mode: "    + str(statistics.mode(nums))
+            case _: return "n/a"
+    return get
 
+def printStats (rolls: list):
+    stats = getStats(rolls)
+    print(stats("min"))
+    print(stats("max"))
+    print(stats("mean"))
+    print(stats("med"))
+    print(stats("mode"))
 
-    print("minimum: "+ str(nums[0]))
-    print("maximum: "+ str(nums[len(nums) - 1]))
-    print("mean: "+ str(statistics.mean(nums)))
-    print("median high: "+ str(statistics.median_high(nums)))
-    print("median: "+ str(statistics.median(nums)))
-    print("median low: "+ str(statistics.median_low(nums)))
-    print("mode: "+ str(statistics.mode(nums)))
 
 
