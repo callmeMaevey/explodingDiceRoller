@@ -22,13 +22,5 @@ def getStats(rolls: list):
             case _: return "n/a"
     return get
 
-def printStats (rolls: list):
-    stats = getStats(rolls)
-    print(stats("min"))
-    print(stats("max"))
-    print(stats("mean"))
-    print(stats("med"))
-    print(stats("mode"))
-
 
 
