@@ -4,9 +4,9 @@ def AddDice (quant: int, numOfSides: int) -> int:
     accum: int = 0
     for iteration in range (0, quant):
         value: int = random.randint(1,numOfSides)
-        accum += value
-        if value == 6:
-            accum += AddDice(1,numOfSides)
+        match value:
+            case 6: accum += 6 + AddDice(1,numOfSides)
+            case _: accum += value
     return accum
 
 def getStats(rolls: list):
@@ -17,8 +17,8 @@ def getStats(rolls: list):
             case "min":  return "minimum: " + str(nums[0]) 
             case "max":  return "maximum: " + str(nums[len(nums) - 1])
             case "mean": return "mean: "    + str(statistics.mean(nums))
-            case "med":  return "median: "  + str(statistics.median(nums))
-            case "mode": return "mode: "    + str(statistics.mode(nums))
+            case "medi": return "median: "  + str(statistics.median(nums))
+            case "mode": return "mode: "    + str(statistics.multimode(nums))
             case _: return "n/a"
     return get
 

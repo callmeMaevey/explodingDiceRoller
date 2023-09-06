@@ -5,15 +5,13 @@ def printStats (rolls: list):
     print(stats("min"))
     print(stats("max"))
     print(stats("mean"))
-    print(stats("med"))
+    print(stats("medi"))
     print(stats("mode"))
-
 
 if __name__ == "__main__":
     iterations = [int] * 1000
-    dice = lambda: Roller.AddDice(4,6) + Roller.AddDice(2,12)
+    dice = lambda: Roller.AddDice(3,6)
     for i in range(0, len(iterations)):
         iterations[i] = dice()
-
+    
     printStats(iterations)
-
