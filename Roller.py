@@ -1,13 +1,22 @@
-import random, statistics
+import statistics, enum
+from collections import namedtuple
+from random import randint as roll
 
-def AddDice (quant: int, numOfSides: int) -> int:
-    accum: int = 0
+def ExplosiveSix(quant: int, numOfSides: int) -> [int]:
+    accum: [int] = []
     for iteration in range (0, quant):
-        value: int = random.randint(1,numOfSides)
-        match value:
-            case 6: accum += 6 + AddDice(1,numOfSides)
-            case _: accum += value
+        accum.append(roll(1,numOfSides))
+        if accum[-1] == 6: accum.append(iter(ExplosiveSix(1,numOfSides)))
     return accum
+
+
+def higherthanFactory(value: int):
+    def higherthan(pool: [int]) -> int:
+        accum: int = 0
+        for die in pool:
+            if die > value: accum += 1 
+        return accum
+    return higherthan
 
 def getStats(rolls: list):
     nums: list = rolls.copy()

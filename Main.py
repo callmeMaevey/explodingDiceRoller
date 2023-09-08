@@ -1,6 +1,6 @@
 import Roller
 
-def printStats (rolls: list):
+def printStats (rolls: [int]):
     stats: function = Roller.getStats(rolls)
     print(stats("min"))
     print(stats("max"))
@@ -9,9 +9,12 @@ def printStats (rolls: list):
     print(stats("mode"))
 
 if __name__ == "__main__":
-    iterations = [int] * 1000
-    dice = lambda: Roller.AddDice(3,6)
-    for i in range(0, len(iterations)):
-        iterations[i] = dice()
+    dice = lambda: Roller.ExplosiveSix(3,6)
+    counter = Roller.higherthanFactory(3)
+
+    iterations = [int] * 5
+    for i in range(0, len(iterations)): iterations[i] = dice()
+    for i in iterations:
+        print(i,counter(i),sum(i))
+        printStats(i)
     
-    printStats(iterations)
